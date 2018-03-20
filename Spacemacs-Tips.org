@@ -244,6 +244,7 @@
  - =v i [string]= :: カーソルが[string]の間にあるときその間にある文字列を選択する
                      [string]は =d i [string]= のものと同じ
  - =v a [string]= :: =v i [string]= に合わせ外側の[string]も選択する
+ - =s [string]= :: Visual state で選択した領域を[string]で囲む
 
 * expand region mode
  - =SPC v= :: カーソル位置の単語選択
@@ -407,6 +408,7 @@
  - =] p= :: カーソル行の下にペースト
  - =SPC x c= :: 領域の行数/単語数/文字数をミニバッファに表示
  - =SPC x d w= :: 行末の空白を削除する
+ - =c s [string1] [string2]= :: カーソル位置が [string1] で囲まれているとき [string2] に変更する
 
 * Google Translate の操作
  - =SPC x g l= :: Google Translateの翻訳元言語と翻訳先言語を指定する
