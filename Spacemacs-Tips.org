@@ -187,28 +187,28 @@
 
 * Normal state の操作
  - =d= :: 選択範囲を削除して normal state のまま
- - =d w= :: カーソル位置から単語の終端までカットして(空白を含む) normal state のまま
+ - =d w= :: カーソル位置から単語の終端までカットして(空白を含む) normal state のまま(delete word)
  - =d d= :: カーソル行を削除して normal state のまま
  - =d $= :: 同上
  - =d [number] w= :: カーソル位置から[number]個の単語を削除(終端の空白を含む)
  - =[number] d w= :: 同上
  - =d [number] e= :: カーソル位置から[number]個の単語を削除(終端の空白を除く)
  - =[number] d e= :: 同上
- - =d i w= :: カーソル位置の単語を削除して normal state のまま
+ - =d i w= :: カーソル位置の単語を削除して normal state のまま(delete inner word)
  - =d t [string]= :: カーソル位置からカーソル行の次の[string]の直前まで削除して normal state のまま
- - =d i [string]= :: カーソルが[string]の間にあるときその間にある文字列を削除して normal state のまま
+ - =d i [string]= :: 両端が[string]に挟まれている場所にカーソルがあるとき[string]に挟まれている文字列を削除して normal state のまま
                      [string]には「"」「$」「%」「'」「(」「)」「*」「-」「/」「<」「=」「>」「[」「]」「_」「`」「{」「}」「|」「~」「8」「g」「p」「s」「t」「w」「W」
                      が利用でき「8」は「/*」と「*/」に挟まれた部分「g」はバッファ全体「p」はパラグラフ「s」はセンテンス「t」はHTMLタグ「w」は単語「W」は単語を表す
  - =d a [string]= :: =d i [string]= に合わせ外側の[string]も削除して normal state のまま
  - =D= :: カーソル位置から行末まで削除して normal state のまま
  - =c= :: 選択範囲を削除して insert state に移行する
- - =c w= :: カーソル位置から単語の終端までを削除し insert state に移行する
+ - =c w= :: カーソル位置から単語の終端までを削除し insert state に移行する(cut word)
  - =c c= :: カーソル行の削除して insert state に移行する
  - =c [number] w= :: カーソル位置から[number]個の単語を削除し(終端の空白を含む) insert state に移行する
  - =[number] c w= :: 同上
  - =c [number] e= :: カーソル位置から[number]個の単語を削除し(終端の空白を除く) insert state に移行する
  - =[number] c e= :: 同上
- - =c i w= :: カーソル位置の単語を削除して insert state に移行する
+ - =c i w= :: カーソル位置の単語を削除して insert state に移行する(cut inner word)
  - =c t [string]= :: カーソル位置からカーソル行の次の[string]の直前まで削除して insert state に移行する
  - =c i [string]= :: =d i [string]= で削除後は insert state に移行する
  - =c a [string]= :: =d a [string]= で削除後は insert state に移行する
@@ -221,9 +221,9 @@
  - =[number] X= :: [number]文字削除して normal state のまま(Back Space)
  - =y= :: 選択範囲のコピー
  - =y y= :: カーソル行をコピー
- - =y i [string]= :: カーソル位置が[string]の間にあるときその間の文字列を yank する
+ - =y i [string]= :: カーソル位置が[string]の間にあるときその間の文字列を yank する(yank inner)
                      [string]は =d i [string]= のものと同じ
- - =y a [string]= :: =y i [string]= に合わせ外側の[string]も yank する
+ - =y a [string]= :: =y i [string]= に合わせ外側の[string]も yank する(yank an object)
  - =p= :: カーソルの後にペースト
  - =P= :: カーソルの前にペースト
  - =SPC r y= :: キルリングを表示
@@ -241,7 +241,7 @@
  - =v= :: Visual state に移行(通常の文字列選択)
  - =V= :: Visual state に移行(行単位の選択)
  - =C-v= :: Visual state に移行(矩形選択)
- - =v i [string]= :: カーソルが[string]の間にあるときその間にある文字列を選択する
+ - =v i [string]= :: 両端が[string]に挟まれている場所にカーソルがあるとき[string]に挟まれた文字列を選択する
                      [string]は =d i [string]= のものと同じ
  - =v a [string]= :: =v i [string]= に合わせ外側の[string]も選択する
  - =s [string]= :: Visual state で選択した領域を[string]で囲む
@@ -408,7 +408,12 @@
  - =] p= :: カーソル行の下にペースト
  - =SPC x c= :: 領域の行数/単語数/文字数をミニバッファに表示
  - =SPC x d w= :: 行末の空白を削除する
- - =c s [string1] [string2]= :: カーソル位置が [string1] で囲まれているとき [string2] に変更する
+ - =c s [string1] [string2]= :: カーソル位置が [string1] で挟まれているとき [string2] に変更する
+      [string2] を <tag> にすると <tag> と </tag> に挟まれる
+      [string1] を t にすると HTML タグを [string2] に変更する
+ - =d s [string]= :: 両端を [string] に挟まれていた文字列から [string] を除去する
+ - =y s i w [string]= :: カーソル位置の単語を [string] で挟む(i w は text object で inner word)
+      [string] を <tag> にすると <tag> と </tag> に挟まれる
 
 * Google Translate の操作
  - =SPC x g l= :: Google Translateの翻訳元言語と翻訳先言語を指定する
