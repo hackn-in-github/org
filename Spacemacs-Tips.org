@@ -408,12 +408,20 @@
  - =] p= :: カーソル行の下にペースト
  - =SPC x c= :: 領域の行数/単語数/文字数をミニバッファに表示
  - =SPC x d w= :: 行末の空白を削除する
+
+* vim-surround
  - =c s [string1] [string2]= :: カーソル位置が [string1] で挟まれているとき [string2] に変更する
       [string2] を <tag> にすると <tag> と </tag> に挟まれる
       [string1] を t にすると HTML タグを [string2] に変更する
  - =d s [string]= :: 両端を [string] に挟まれていた文字列から [string] を除去する
  - =y s i w [string]= :: カーソル位置の単語を [string] で挟む(i w は text object で inner word)
       [string] を <tag> にすると <tag> と </tag> に挟まれる
+ - =y s s b= :: カーソル位置にある文を braces で囲む
+ - =y s s )= :: =y s s b= と同様
+ - =S [string]= :: visual state において選択範囲を [string] で囲む
+                   ただし以下の設定が必要
+                   (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
+                   (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
 
 * Google Translate の操作
  - =SPC x g l= :: Google Translateの翻訳元言語と翻訳先言語を指定する
