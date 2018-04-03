@@ -409,6 +409,21 @@
  - =SPC x c= :: 領域の行数/単語数/文字数をミニバッファに表示
  - =SPC x d w= :: 行末の空白を削除する
 
+* Helm transient state
+ - =M SPC= :: transient state に入る(Linux のキーバインドで「メニューを開く」に予約されているから解除する)
+ - =M S SPC= :: =M SPC= と同様
+ - =TAB= :: actions page に切り替えて transient state を解除する
+ - =a= :: actions page に切り替える
+ - =g= :: 最初の候補に移動
+ - =G= :: 最後の候補に移動
+ - =h= :: 前のソースに移動
+ - =l= :: 次のソースに移動
+ - =j= :: 次の候補に移動
+ - =k= :: 前の候補に移動
+ - =t= :: カーソル位置の候補をマーク
+ - =T= :: すべての候補をマーク
+ - =v= :: persistent action を実行する(現在のバッファを表示？)
+
 * vim-surround
  - =c s [string1] [string2]= :: カーソル位置が [string1] で挟まれているとき [string2] に変更する
       [string2] を <tag> にすると <tag> と </tag> に挟まれる
