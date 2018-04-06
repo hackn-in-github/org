@@ -410,6 +410,8 @@
  - =] p= :: カーソル行の下にペースト
  - =SPC x c= :: 領域の行数/単語数/文字数をミニバッファに表示
  - =SPC x d w= :: 行末の空白を削除する
+ - =:ffap= :: カーソル位置にディレクトリを示す文字列があるときそのディレクトリを Find File で開く(Find File At Point)
+ - =SPC SPC ffap= :: =:ffap= に同じ
 
 * Helm transient state
  - =M SPC= :: transient state に入る(Linux のキーバインドで「メニューを開く」に予約されているから解除する)
