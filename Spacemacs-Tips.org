@@ -233,6 +233,8 @@
            変更ポイントが更新されず大変なことになる
  - =~= :: カーソル位置の文字を大/小文字変換する
  - =C-[= :: Normal state に戻る
+ - =u= :: undo
+ - =C-r= :: redo
 
 ** Insert normal state (insert state で normal state のコマンドを1度だけ実行できる)
  - =C-o= :: insert normal state に移行する(insert state で実行する)
