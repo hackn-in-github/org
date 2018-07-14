@@ -635,7 +635,7 @@
  - =q= :: バッファを閉じる
 
 * dired-hide-details-mode
-- =)= :: dired の表示をファイル名のみにするまたはファイル名のみから元に戻す
+ - =)= :: dired の表示をファイル名のみにするまたはファイル名のみから元に戻す
 
 * wdired-mode(SPC a w に wdired-change-to-wdired-mode を設定)
  * =w= :: dired-mode で「w」を押下すると wdired-mode になるように設定した
