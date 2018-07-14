@@ -634,8 +634,12 @@
  - =C-u s SWITCHES= :: SWITCHES でのソート
  - =q= :: バッファを閉じる
 
+* dired-hide-details-mode
+- =)= :: dired の表示をファイル名のみにするまたはファイル名のみから元に戻す
+
 * wdired-mode(SPC a w に wdired-change-to-wdired-mode を設定)
- - =\C-c \C-c= :: 編集を反映させる
- - =\C-c \C-s= :: =\C-c \C-c= と同じ
- - =\C-c ESC= :: 編集を破棄
- - =\C-c \C-k= :: =\C-c ESC= と同じ
+ * =w= :: dired-mode で「w」を押下すると wdired-mode になるように設定した
+ * =\C-c \C-c= :: 編集を反映させる
+ * =\C-c \C-s= :: =\C-c \C-c= と同じ
+ * =\C-c ESC= :: 編集を破棄
+ * =\C-c \C-k= :: =\C-c ESC= と同じ
