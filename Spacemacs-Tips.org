@@ -635,7 +635,8 @@
  - =q= :: バッファを閉じる
 
 * dired-hide-details-mode
- - =)= :: dired の表示をファイル名のみにするまたはファイル名のみから元に戻す
+ - =(= :: dired の表示を押下する度に「サイズ：更新時間」「すべて」「ファイル名のみ」の順に変更する
+          dired-details-s を導入( https://github.com/misohena/dired-details-s )
 
 * wdired-mode(SPC a w に wdired-change-to-wdired-mode を設定)
  * =w= :: dired-mode で「w」を押下すると wdired-mode になるように設定した
