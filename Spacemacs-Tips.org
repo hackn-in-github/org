@@ -112,7 +112,7 @@
  - =SPC b d= :: 現在のバッファを閉じる
  - =SPC u SPC b d= :: 現在のバッファとウィンドウを閉じる
  - =SPC b h= :: *spacemacs* バッファを開く
- - =SPC b m= :: 現在のバッファを除くすべてのバッファを閉じる
+ - =SPC b m= :: *Messages* バッファを開く
  - =SPC u SPC b m= :: 現在のバッファおよびウィンドウを除きすべて閉じる
  - =SPC b R= :: 現在のバッファをファイルから読み込み元に戻す
  - =SPC b s= :: *scratch* バッファを開く
@@ -120,6 +120,8 @@
  - =SPC b Y= :: バッファ全体をクリップボードにコピーする
  - =SPC b b= :: バッファを指定 C-z Insert Buffer 指定したバッファをカーソル位置に挿入
  - =SPC b #= :: 現在のウィンドウのバッファを # (0-9) 番目のウィンドウに移動させる
+ - =SPC b C-d= :: 現在のバッファを除くすべてのバッファを閉じる
+ - =SPC b C-D EXPR= :: すべてのバッファから正規表現 EXPR に該当するものを kill する
 
 ** SPC b . に続けて行う
  - =K= :: 現在のバッファを閉じる
@@ -146,6 +148,7 @@
  - =SPC f E= :: 昇格した権限でファイルを開く
  - =SPC f f= :: helm でファイルを開く
  - =SPC f h= :: バイナリファイルを hex editor (hexl) で開く
+ - =SPC f i= :: 現在のバッファに指定したファイルを挿入する
  - =SPC f l= :: ファイルを文字コードその他を無変換で fundamental mode で開く(open file literally in fundamental mode)
  - =SPC f L= :: ファイルを locate で探す
  - =SPC f R= :: ファイルをリネームする
