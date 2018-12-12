@@ -1,0 +1,624 @@
+* 数値、文字列、変数
+** データ型
+   "ブール値"、"整数"、"浮動小数点"、"文字列"などがある。
+** 変数
+   変数に使用できる文字は"小文字の英字"、"大文字の英字"、"数字"、"アンダースコア"であり、変数の先頭に"数字"は使えない。
+   また、名前の先頭がアンダースコアになっている名前を特別扱いする。
+   以下の名前は Python の"予約語"になっているので、変数名として使用できない。
+   False None True and as assert break class continue def del elif else except finally for from global
+   if import in is lambda nonlocal not or pass raise return try while with yield
+** 数値
+*** 算術演算子
+		+--------+----------------------+---------+------+
+		| 演算子 | 意味                 | 例      | 結果 |
+		+--------+----------------------+---------+------+
+		| +      | 加算                 | 5 + 8   |   13 |
+		+--------+----------------------+---------+------+
+		| -      | 減算                 | 90 - 10 |   80 |
+		+--------+----------------------+---------+------+
+		| *      | 乗算                 | 4 * 7   |   28 |
+		+--------+----------------------+---------+------+
+		| /      | 浮動小数点の除算     | 7 / 2   |  3.5 |
+		+--------+----------------------+---------+------+
+		| //     | 整数の除算(切り捨て) | 7 // 2  |    3 |
+		+--------+----------------------+---------+------+
+		| %      | 剰余(余り)           | 7 % 3   |    1 |
+		+--------+----------------------+---------+------+
+		| **     | 指数                 | 3 ** 4  |   81 |
+		+--------+----------------------+---------+------+
+** 基数
+   通常の数字の入力は10進、接頭文字列が"0b"または"0B"のとき2進、"0o"または"0O"のとき8進、"0x"または"0X"のとき16進となる。
+   すなわち、0B10は10進での2、0O10は10進の8、0X10は10進の16である。
+** 型の変換
+*** 整数値への変換
+**** 成功する例
+     int(True)  -> 1
+     int(False) -> 0
+     int(98.6)  -> 98
+     int(1.0e4) -> 10000
+     int('99')  -> 99
+     int('-23') -> 23
+     int('+12') -> 12
+     int(12345) -> 12345
+**** 失敗する例
+     int('99 bottles of beer on the wall')
+     int('')
+     int('98.6')
+     int('1.0e4')
+*** 浮動小数点値への変換
+    float(True)    -> 1.0
+    float(False)   -> 0.0
+    float(98)      -> 98.0
+    float('99')    -> 99.0
+    float('98.6')  -> 98.6
+    float('-1.5')  -> -1.5
+    float('1.0e4') -> 10000.0
+** 文字列の作成
+*** クォートを使った作成
+    'Snap'や"Crackle"のようにシングルクォートやダブルクォートを用いて文字列を作成できる。
+    シングルクォートで作られた文字列の中にダブルクォートを用いることやその逆ができる。
+    3個のシングルクォート(''')や3個のダブルクォート(""")を用いることもできる。
+    ただし、通常は余り役に立たないが、対話型インタープリタにおいて"複数行文字列"を作るために用いられる。
+    文字列変数 hoge を出力するときは print(hoge) とする。
+    print() 関数は複数の引数をとることができ、それらの引数を文字列に変換し、クォートを取り除き、
+    複数の引数の間には半角空白を挿入し末尾に改行を追加する。
+    例えば、print(99, 'bottles', 'would be enough.')は"99 bottles would be enough."と出力される。
+*** str() を使った型変換
+    str(98.6)  -> '98.6'
+    str(1.0e4) -> '10000.0'
+    str(True)  -> 'True'
+*** \ によるエスケープ
+    特定の文字の前にバックスラッシュを入れると特別な意味になる。
+    例えば、改行文字列(\n)、タブ文字列(\t)などがあり、シングルクォート(\')、ダブルクォート(\")、バックスラッシュ(\\)は
+    それぞれシングルクォート、ダブルクォート、バックスラッシュを表示する。
+*** + による連結
+    複数の文字列を"+"を用いて"リテラル文字列"、"文字列変数"を連結できる。ただし、print()関数のように文字列間に半角空白を挿入しない。
+    リテラル文字列のみの場合はそれらを並べるだけで連結できる。
+    すなわち、"My word! " "A gentleman celler!"と入力すると'My word! A gentleman celler!'と出力される。
+*** * による繰り返し
+    ある文字列を"*"を用いて繰り返して入力できる。例えば、'Na ' * 4 は'Na Na Na Na 'となる。
+*** [] による文字の抽出
+    n個の文字を表す文字列変数 letters があるとすると、letters[k] は文字列変数 letters の表す文字列の k+1 番目の文字を表す。
+    ただし、letters[k-n] と letters[k] は同じ文字を返す。
+    例えば、26個の文字による文字列変数 letters = 'abcdefghijklmnopqrstuvwxyz' において
+    letters[24] と letters[-2] は等しく 'y' となる。
+    また、letters[k] の k で指定できる数値は -n から n-1 までの整数値である。
+*** [start : end : step] によるスライス
+    letters[start : end : step] は文字列変数 letters の表す文字列の、
+    letters[start] 以降から letters[end] 以降を取り除いたものを step おきに出力する。
+    例えば、letters[6:20:3] は 'gjmps' と出力する。
+    また、start と end が等しい場合は空文字列を出力する。
+    letters[:] は letters そのもの
+    letters[start:] は letters[start] 以降すべて
+    letters[:end] は letters から letters[end] 以降を取り除いたもの
+    letters[start:end] は letters[start] 以降から letters[end] 以降を取り除いたもの
+    start および end には letters[k] と同様に -n から n-1 の整数値を指定できる。
+    start と end の条件は letters[21:-3] のように end には start < end だけでなく start < end + n となる負の end も指定できる。
+    また、letters[21:-7] のように start > end または start > end + n の場合は空文字列 '' を返すが、
+    letters[21:-7:-1] のように step に負の整数を指定すると逆順で 'vu' のように出力される。
+*** len() による長さの取得
+    前述の文字列変数 letters において len(letters) -> 26 と letters が表す文字列に含まれる文字の個数を表す。
+*** split() による分割
+    文字列を操作する関数は strings.function(arguments) という形式で用いる。
+    split()関数は文字列を引数で指定したセパレータで分割し、部分文字列の"リスト"を作成する。
+    例えば、todos = 'get gloves,get mask,give cat vitamins,call ambulance' に対して todos.split(',') の出力は
+    ['get gloves', 'get mask', 'give cat vitamins', 'call ambulance'] となる。
+    また、引数を指定しない場合はセパレータとして空白文字(改行、スペース、タブ)を使う。
+    例えば、todos.split() の出力は
+    ['get', 'gloves,get', 'mask,give', 'cat', 'vitamins,call', 'ambulance'] となる。
+*** join() による結合
+    string.join(list) という形式で list に含まれる文字列を順に string を用いて結合する。
+    例えば、crypto_list = ['Yeti', 'Bigfoot', 'Loch Ness Monster'] に対して ', '.join(crypto_list) の出力は
+    'Yeti, Bigfoot, Loch Ness Monster' である。
+*** 多彩な文字列操作
+**** strings.startswith('str')
+     'strings' の先頭が 'str' であるか判定する。結果は True または False となる。
+**** strings.endswith('str')
+     'strings' の末尾が 'str' であるか判定する。結果は True または False となる。
+**** strings.find('str')
+     'strings' の先頭から検索し 'str' が最初に現れたオフセットを返す。
+     すなわち、'strings' の先頭から n 番目の文字列以降が 'str' となるとき n-1 を返す。
+**** strings.rfind('str')
+     find()関数の逆の操作をする関数。
+**** strings.count('str')
+     'strings' で用いられている 'str' の総数を返す。
+**** strings.isalnum()
+     'strings' で用いられている文字が"英字"および"数字"のみかを判定する。結果は True または False となる。
+*** 大文字と小文字の区別、配置
+    setup = 'a duck goes into a bar...' に対して関数を作用させる。
+**** strings.strip('str')
+     'strings' から 'str' を除いた文字列を返す。
+     setup.strip('.') -> 'a duck goes into a bar'
+**** strings.capitalize()
+     'strings' の先頭の単語をタイトルケースにした文字列を返す。
+     setup.capitalize() -> 'A duck goes into a bar...'
+**** strings.title()
+     'strings' に含まれる単語すべてをタイトルケースにした文字列を返す。
+     setup.title() -> 'A Duck Goes Into A Bar...'
+**** strings.upper()
+     'strings' に含まれる英字をすべて大文字にした文字列を返す。
+     setup.upper() -> 'A DUCK GOES INTO A BAR...'
+**** strings.lower()
+     'strings' に含まれる英字をすべて小文字にした文字列を返す。
+     setup.lower() -> 'a duck goes into a bar...'
+**** strings.swapcase()
+     'strings' に含まれる英字をすべて小文字は大文字に、大文字は小文字にした文字列を返す。
+     setup.swapcase() -> 'A DUCK GOES INTO A BAR...'
+**** strings.center(num)
+     'strings' を num 幅の中の中央に配置した文字列を返す。
+     setup.center(30) -> '  a duck goes into a bar...   '
+**** strings.ljust(num)
+     'strings' を num 幅の中の左端に配置した文字列を返す。
+     setup.ljust(30) -> 'a duck goes into a bar...     '
+**** strings.rjust(num)
+     'strings' を num 幅の中に右端に配置した文字列を返す。
+     setup.rjust(num) -> '     a duck goes into a bar...'
+*** replace() による置換
+    strings.replace('old', 'new', num) で 'strings' に含まれる 'old' 文字列を 'new' 文字列に
+    先頭から順に num 回置き換えた文字列を返す。
+    num を省略した場合は 'strings' に含まれるすべての 'old' 文字列を 'new' 文字列に置き換えた文字列を返す。
+    setup.replace('duck', 'marmoset')     -> 'a marmoset goes into a bar...'
+    setup.replace('a ', 'a famous ', 100) -> 'a famous duck goes into a famous bar...'
+    setup.replace('a', 'a famous', 100)   -> 'a famous duck goes into a famous ba famousr...'
+* リスト、タプル、辞書、集合
+** リスト
+*** [] または list() による作成
+    empty_list = [ ]
+    weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+    big_birds = ['emu', 'ostrich', 'cassowary']
+    first_names = ['Graham', 'John', 'Terry', 'Micheal']
+    another_empty_list = list()
+*** list() による他のデータ型からリストへの変換
+**** 文字列から生成
+     list('cat') -> ['c', 'a', 't']
+**** タプルから生成
+     a_tuple = ('ready', 'fire', 'aim')
+     list(a_tuple) -> ['ready', 'fire', 'aim']
+**** split()による生成
+     birthday = '1/6/1952'
+     birthday.split('/') -> ['1', '6', '1952']
+     splitme = 'a/b//c/d///e'
+     splitme.split('/')  -> ['a', 'b', '', 'c', 'd', '', '', 'e']
+     splitme.split('//') -> ['a/b', 'c/d', '/e']
+*** [offset] を使った要素の取り出し
+    marxes = ['Groucho', 'Chico', 'Harpo']
+    marxes[0] -> 'Groucho'
+    marxes[1] -> 'Chico'
+    marxes[2] -> 'Harpo'
+    marxes[-1] -> 'Harpo'
+    marxes[-2] -> 'Chico'
+    marxes[-3] -> 'Groucho'
+*** リストのリスト
+    small_birds = ['hummingbird', 'finch']
+    extinct_birds = ['dodo', 'passenger pigeon', 'Norwegian Blue']
+    carol_birds = [3, 'French hens', 2, 'turtledoves']
+    all_birds = [small_birds, extinct_birds, 'macaw', carol_birds]
+    all_birds -> [['hummingbird', 'finch'], ['dodo', 'passenger pigeon', 'Norwegian Blue'], 'macaw', [3, 'French hens', 2, 'turtledoves']]
+    all_birds[0] -> ['hummingbird', 'finch']
+    all_birds[1] -> ['dodo', 'passenger pigeon', 'Norwegian Blue']
+    all_birds[1][0] -> 'dodo'
+*** [offset] による要素の書き換え
+    リストはミュータブルであり要素の削除や書き換えが可能である。
+    marxes = ['Groucho', 'Chico', 'Harpo']
+    marxes[2] = 'Wanda'
+    marxes -> ['Groucho', 'Chico', 'Wanda']
+*** オフセットの範囲を指定したスライスによるサブシーケンスの取り出し
+    marxes = ['Groucho', 'Chico', 'Harpo']
+    marxes[0:2] -> ['Groucho', 'Chico']
+    marxes[::2] -> ['Groucho', 'Harpo']
+    marxes[::-2] -> ['Harpo', 'Groucho']
+    marxes[::-1] -> ['Harpo', 'Chico', 'Groucho']
+*** append() による末尾への要素の追加
+    list.append('strings') で list の最後に 'strings' を追加する。
+    marxes = ['Groucho', 'Chico', 'Harpo']
+    marxes.append('Zeppo')
+    marxes -> ['Groucho', 'Chico', 'Harpo', 'Zeppo']
+*** extend() または += を使ったリストの結合
+    list1.extend(list2) で list1 と list2 を結合する。list1 += list2 でも同じ結果となる。
+    marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo']
+    others = ['Gummo', 'Karl']
+    marxes.extend(others)
+    marxes -> ['Groucho', 'Chico', 'Harpo', 'Zeppo', 'Gummo', 'Karl']
+    marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo']
+    others = ['Gummo', 'Karl']
+    marxes += others
+    marxes -> ['Groucho', 'Chico', 'Harpo', 'Zeppo', 'Gummo', 'Karl']
+    extend()ではなくappend()を使うと次のようにリストの最後にリストを追加する。
+    marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo']
+    others = ['Gummo', 'Karl']
+    marxes.append(others)
+    marxes -> ['Groucho', 'Chico', 'Harpo', 'Zeppo', ['Gummo', 'Karl']]
+*** insert() によるオフセットを指定した要素の追加
+    list.insert(num, 'strings') で list[num-1] と list[num] の間に 'strings' を追加する。
+    marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo']
+    marxes.insert(3, 'Gummo')
+    marxes -> ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
+    marxes.insert(10, 'Karl')
+    marxes -> ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo', 'Karl']
+*** del による指定したオフセットの要素の削除
+    del list[offset] で list から list[offset] を削除する。
+    del marxes[-1]
+    marxes -> ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
+*** remove() による値に基づく要素の削除
+    list.remove('strings') で list から 'strings' という要素を削除する。
+    marxes.remove('Gummo')
+    marxes -> ['Groucho', 'Chico', 'Harpo', 'Zeppo']
+*** pop() でオフセットを指定して要素を取り出し、削除する方法
+    list.pop(num) で list から list[num] を返し、同時に list から list[num] を削除する。
+    num が省略されたときは -1 が指定されたと同じ動作をする。
+    marxes.pop() -> 'Zeppo'
+    marxes -> ['Groucho', 'Chico', 'Harpo']
+    marxes.pop(1) -> 'Chico'
+    marxes -> ['Groucho', 'Harpo']
+*** index() により要素の値から要素のオフセットを知る方法
+    list.index('strings') で list に含まれている 'strings' のオフセットを返す。
+    marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo']
+    marxes.index('Chico') -> 1
+*** in を使った値の有無のテスト
+    'strings' in list で list に 'strings' が含まれていれば True、含まれていなければ False を返す。
+    'Groucho' in marxes -> True
+    'Bob' in marxes -> False
+*** count() を使った値の個数の計算
+    list.count('strings') で list 内に 'strings' が含まれている場合、その個数を返す。
+    marxes = ['Groucho', 'Chico', 'Harpo']
+    marxes.count('Harpo') -> 1
+    marxes.count('Bob') -> 0
+    snl_skit = ['cheeseburger', 'cheeseburger', 'cheeseburger']
+    snl_skit.count('cheeseburger') -> 3
+*** join() による文字列への変換
+    strings.join(list) で list の各要素を 'strings' を用いて結合する。
+    ', '.join(marxes) -> 'Groucho, Chico, Harpo'
+    join() は split() の逆であると覚えておくと役に立つ。
+    friends = ['Harry', 'Hermione', 'Ron']
+    separator = ' * '
+    joined = separator.join(friends)
+    joined -> 'Harry * Hermione * Ron'
+    separated = joined.split(separator)
+    separeted -> ['Harry', 'Hermione', 'Ron']
+    separated == friends -> True
+*** sort() および sorted() による要素の並べ替え
+    list.sort() で list の要素を昇順に並べ替える。逆順にするには sort(reverse=True) とする。
+    sorted(list) で list の要素を昇順に並べ替えたものを返す。これは元の list の要素の順序には作用しない。
+    marxes = ['Groucho', 'Chico', 'Harpo']
+    sorted_marxes = sorted(marxes)
+    sorted_marxes -> ['Chico', 'Groucho', 'Harpo']
+    marxes -> ['Groucho', 'Chico', 'Harpo']
+    marxes.sort()
+    marxes -> ['Chico', 'Groucho', 'Harpo']
+    numbers = [2, 1, 4.0, 3]
+    numbers.sort()
+    numbers -> [1, 2, 3, 4.0]
+    numbers = [2, 1, 4.0, 3]
+    numbers.sort(reverse=True)
+    numbers -> [4.0, 3, 2, 1]
+*** len() による長さの取得
+    len(list) で list の要素の数を返す。
+    len(marxes) -> 3
+*** = による代入と copy() によるコピー
+    listnew = listold により listold とまったく同じ listnew が作成され、要素の変更などはいずれのリストにも及ぶ。
+    a = [1, 2, 3]
+    a -> [1, 2, 3]
+    b = a
+    b -> [1, 2, 3]
+    a[0] = 'surprise'
+    a -> ['surprise', 2, 3]
+    b -> ['surprise', 2, 3]
+    b[0] = 'I hate surprises'
+    b -> ['I hate surprises', 2, 3]
+    a -> ['I hate surprises', 2, 3]
+    このように、新しく作ったリストと古いリストが連動して変化することを望まないときは、リストの copy() 関数、list() 変換関数、
+    リストスライス[:] のいずれかを用いる。
+    a = [1, 2, 3]
+    a -> [1, 2, 3]
+    b = a.copy()
+    c = list(a)
+    d = a[:]
+    a[0] = 'integers list are boring'
+    a -> ['integers list are boring', 2, 3]
+    b = [1, 2, 3]
+    c = [1, 2, 3]
+    d = [1, 2, 3]
+** タプル
+*** () を使ったタプルの作成
+**** 空のタプルの作成
+     empty_tuple = ()
+     empty_tuple -> ()
+**** 1個の要素をもつタプルの作成
+     one_marx = 'Groucho',
+     one_marx -> ('Groucho',)
+**** 複数の要素をもつタプルの作成
+     marx_tuple = 'Groucho', 'Chico', 'Harpo'
+     marx_tuple -> ('Groucho', 'Chico', 'Harpo')
+     marx_tuple[0] -> 'Groucho'
+     marx_tuple[1] -> 'Chico'
+     marx_tuple[2] -> 'Harpo'
+     marx_tuple[-1] -> 'Harpo'
+     marx_tuple[-2] -> 'Chico'
+     marx_tuple[-3] -> 'Groucho'
+   タプルのエコー表示には丸括弧が表示されるが、タプルの定義には必ずしも必要というわけではない。
+   空のタプルを作成するときだけ必ず必要となるだけである。タプルを定義するのは、値を区切るカンマである。
+   最後のカンマは省略できる。
+   また、タプルを使えば複数の変数への代入が簡単にできる。これは、"タプルのアンパック"と呼ばれることがある。
+   marx_tuple = ('Groucho', 'Chico', 'Harpo')
+   a, b, c = marx_tuple
+   a -> 'Groucho'
+   b -> 'Chico'
+   c -> 'Harpo'
+   さらに、複数の変数の値を入れ替えることも容易である。
+   password = 'swordfish'
+   icecream = 'tuttifrutti'
+   password, icecream = icecream, password
+   password -> 'tuttifrutti'
+   icecream -> 'swordfish'
+**** tuple() を用いてタプルの作成
+     tuple('strings') は 'strings' で用いられている各々の文字を要素としたタプルを返す。
+     tuple(list) は list の要素を要素とするタプルを返す。
+     tuple('Groucho') -> ('G', 'r', 'o', 'u', 'c', 'h', 'o')
+     marx_list = ['Groucho', 'Chico', 'Harpo']
+     tuple(marx_list) -> ('Groucho', 'Chico', 'Harpo')
+** 辞書
+*** {} を使った辞書の作成
+    辞書とは「key : value」のペアをカンマで区切って並べ、波括弧で囲んだものである。
+    value の値は重複しても構わないが、key は一意でなければならない。
+    empty_dict = {}
+    empty_dict -> {}
+    bierce = {
+    ... "day": "A period of twenty-four house, mostly misspent",
+    ... "positive": "Mistaken at the top of one's voice",
+    ... "misfortune": "The kind of fortune that never misses",
+    ... }
+    bierce -> {'misfortune': 'The kind of fortune that never misses', 'day': 'A period of twenty-four house, mostly misspent', 'positive': "Mistaken at the top of one's voice"}
+*** dict() を使った変換
+    dict() を用いてリストのリスト、タプルのリスト、リストのタプル、タプルのタプルから辞書を返すことができ、
+    2文字からなる文字列のリスト、2文字からなる文字列のタプルから辞書を返す。
+    lol = [['a', 'b'],['c', 'd'], ['e', 'f']]
+    dict(lol) -> {'a': 'b', 'e': 'f', 'c': 'd'}
+    lot = [('a', 'b'), ('c', 'd'), ('e', 'f')]
+    dict(lot) -> {'a': 'b', 'e': 'f', 'c': 'd'}
+    tol = ['a', 'b'], ['c', 'd'], ['e', 'f']
+    dict(tol) -> {'a': 'b', 'e': 'f', 'c': 'd'}
+    tot = (('a', 'b'), ('c', 'd'), ('e', 'f'))
+    dict(tot) -> {'a': 'b', 'e': 'f', 'c': 'd'}
+    los = ['ab', 'cd', 'ef']
+    dict(los) -> {'a': 'b', 'e': 'f', 'c': 'd'}
+    tos = ('ab', 'cd', 'ef')
+    dict(tos) -> {'a': 'b', 'e': 'f', 'c': 'd'}
+*** [key] による要素の追加、変更
+    pythons = {
+    ... 'Chapman': 'Graham',
+    ... 'Cleese': 'John',
+    ... 'Idle': 'Eric',
+    ... 'Jones': 'Terry',
+    ... 'Palin': 'Micheal',
+    ... }
+    pythons -> {'Chapman': 'Graham', 'Idle': 'Eric', 'Cleese': 'John', 'Palin': 'Micheal', 'Jones': 'Terry'}
+    pythons['Gilliam'] = 'Gerry'
+    pythons -> {'Chapman': 'Graham', 'Cleese': 'John', 'Gilliam': 'Gerry', 'Jones': 'Terry', 'Idle': 'Eric', 'Palin': 'Micheal'}
+    pythons['Gilliam'] = 'Terry'
+    pythons -> {'Chapman': 'Graham', 'Cleese': 'John', 'Gilliam': 'Terry', 'Jones': 'Terry', 'Idle': 'Eric', 'Palin': 'Micheal'}
+    このように辞書は dict[key] を用いて value の値を追加、変更できる。
+    また、辞書の定義時に key が重複したときには最後に定義した value だけが残る。
+    some_pythons = {
+    ... 'Graham': 'Chapman',
+    ... 'John': 'Cleese',
+    ... 'Eric': 'Idle',
+    ... 'Terry': 'Gilliam',
+    ... 'Micheal': 'Palin',
+    ... 'Terry': 'Jones',
+    ... }
+    some_pythons -> {'Graham': 'Chapman', 'John': 'Cleese', 'Terry': 'Jones', 'Micheal': 'Palin', 'Eric': 'Idle'}
+    この例では、'Terry' という key に 'Gilliam' という value を代入してから、'Jones' という value に置き換えている。
+*** update() による辞書の結合
+    dict1.update(dict2) で dict1 に dict2 を結合させる。
+    dict1 と dict2 に共通の key がある場合は dict2 にある key : value で置き換えられる。
+    pythons = {
+    ... 'Chapman': 'Graham',
+    ... 'Cleese': 'John',
+    ... 'Gilliam': 'Terry',
+    ... 'Idle': 'Eric',
+    ... 'Jones': 'Terry',
+    ... 'Palin': 'Micheal',
+    ... }
+    pytons -> {'Chapman': 'Graham', 'Cleese': 'John', 'Gilliam': 'Terry', 'Jones': 'Terry', 'Idle': 'Eric', 'Palin': 'Micheal'}
+    others = {'Marx': 'Groucho', 'Howard': 'Moe'}
+    pythons.update(others)
+    pythons -> {'Chapman': 'Graham', 'Cleese': 'John', 'Gilliam': 'Terry', 'Jones': 'Terry', 'Idle': 'Eric', 'Palin': 'Micheal', 'Marx': 'Groucho', 'Howard': 'Moe'}
+    first = {'a': 1, 'b': 2}
+    second = {'b': 'platypus'}
+    first.update(second)
+    first -> {'a': 1, 'b': 'platypus'}
+*** del による指定した key をもつ要素の削除
+    del dict['key'] で辞書 dict に含まれる 'key' を key にもつ要素を削除する。
+    pythons -> {'Chapman': 'Graham', 'Cleese': 'John', 'Gilliam': 'Terry', 'Jones': 'Terry', 'Idle': 'Eric', 'Palin': 'Micheal', 'Marx': 'Groucho', 'Howard': 'Moe'}
+    del pythons['Marx']
+    pythons -> {'Chapman': 'Graham', 'Cleese': 'John', 'Gilliam': 'Terry', 'Jones': 'Terry', 'Idle': 'Eric', 'Palin': 'Micheal', 'Howard': 'Moe'}
+    del pythons['Howard']
+    pythons -> {'Chapman': 'Graham', 'Cleese': 'John', 'Gilliam': 'Terry', 'Jones': 'Terry', 'Idle': 'Eric', 'Palin': 'Micheal'}
+    存在しない key を用いて削除をしようとするとエラーが表示される。
+*** clear() のよるすべての要素の削除
+    dict.clear() で辞書 dict の要素をすべて削除する。空辞書を代入することによっても削除できる。
+    pythons = {
+    ... 'Chapman': 'Graham',
+    ... 'Cleese': 'John',
+    ... 'Gilliam': 'Terry',
+    ... 'Idle': 'Eric',
+    ... 'Jones': 'Terry',
+    ... 'Palin': 'Micheal',
+    ... }
+    pythons.clear()
+    pythons -> {}
+    pythons = {
+    ... 'Chapman': 'Graham',
+    ... 'Cleese': 'John',
+    ... 'Gilliam': 'Terry',
+    ... 'Idle': 'Eric',
+    ... 'Jones': 'Terry',
+    ... 'Palin': 'Micheal',
+    ... }
+    pythons = {}
+    pythons -> {}
+*** in を使った key の有無のテスト
+    'strings' in dict で辞書 dict に 'strings' という key が存在しているか判定できる。
+    存在しているのならば True、存在していないのならば False を返す。
+    pythons = {'Chapman': 'Graham', 'Cleese': 'John', 'Jones': 'Terry', 'Palin': 'Micheal'}
+    'Chapman' in pythons -> True
+    'Palin' in pythons   -> True
+    'Gilliam' in pythons -> False
+*** [key] による要素の取得
+    dict['key'] で辞書 dict で 'key' に関連付けられた value が返される。
+    辞書に指定された key が存在しないときは例外エラーが発生する。
+    pythons['Cleese'] -> 'John'
+    pythons['Marx'] -> Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    KeyError: 'Marx'
+    このような例外エラーを避けるためには、in を用いる方法と get() 関数を用いる方法がある。
+    'Marx' in pythons -> False
+    pythons.get('Cleese') -> 'John'
+    pythons.get('Marx') ->
+    get() 関数を用いて存在しない key を調べた場合 None が返される。対話型インタープリタにおいては何も表示されない。
+*** keys() によるすべてのキーの取得
+    dict.keys() で辞書 dict のすべての key を返す。
+    signals = {'green': 'go', 'yellow': 'go faster', 'red': 'smile for the camera'}
+    signals.keys() -> dict_keys(['green', 'red', 'yellow'])
+    リストの形でキーを取得したい場合は list() 関数を用いる。
+    list(signals.keys()) -> ['green', 'red', 'yellow']
+*** values() によるすべての値の取得
+    dict.values() で辞書 dict のすべての value を返す。
+    list(signals.values()) -> ['go', 'smile for the camera', 'go faster']
+*** items() によるすべての key : value のペアの取得
+    dict.items() で辞書 dict のすべての key : value の組を返す。
+    list(signals.items()) -> [('green', 'go'), ('red', 'smile for the camera'), ('yellow', 'go faster')]
+*** = による代入と copy() によるコピー
+    リストの場合と同様に、辞書に変更を加えると、その辞書を参照しているすべての名前に影響が及ぶ。
+    signals = {'green': 'go', 'yellow': 'go faster', 'red': 'smile for the camera'}
+    save_signals = signals
+    signals['blue'] = 'confuse everyone'
+    save_signals -> {'green': 'go', 'red': 'smile for the camera', 'yellow': 'go faster', 'blue': 'confuse everyone'}
+    別の辞書に実際に key : value のペアをコピーしたい場合は、この方法を避けて copy() を使う。
+    signals = {'green': 'go', 'yellow': 'go faster', 'red': 'smile for camera'}
+    original_signals = signals.copy()
+    signals['blue'] = 'confuse everyone'
+    signals -> {'green': 'go', 'red': 'smile for camera', 'yellow': 'go faster', 'blue': 'confuse everyone'}
+    original_signals -> {'green': 'go', 'red': 'smile for camera', 'yellow': 'go faster'}
+** 集合
+*** set()による作成
+    empty_set = set()
+    empty_set -> set()
+    even_numbers = {0, 2, 4, 6, 8}
+    even_numbers -> {8, 0, 2, 4, 6}
+    odd_numbers = {1, 3, 5, 7, 9}
+    odd_numbers -> {9, 3, 5, 1, 7}
+*** set()による他のデータ型から集合への変換
+    set('letters') -> {'l', 'r', 't', 's', 'e'}
+    set(['Dasher', 'Dancer', 'Prancer', 'Mason-Dixon']) -> {'Mason-Dixon', 'Dasher', 'Dancer', 'Prancer'}
+    set(('Ummagumma', 'Echoes', 'Atom Heart Mother')) -> {'Echoes', 'Ummagumma', 'Atom Heart Mother'}
+    set({'apple': 'red', 'orange': 'orange', 'cherry': 'red'}) -> {'orange', 'cherry', 'apple'}
+*** in を使った値の有無のテスト
+    集合を用いた辞書
+    drinks = {
+    ... 'martini': {'vodka', 'vermouth'},
+    ... 'black russian': {'vodka', 'kahlua'},
+    ... 'white russian': {'cream', 'kahlua', 'vodka'},
+    ... 'manhattan': {'rye', 'vermouth', 'bitters'},
+    ... 'screwdriver': {'orange juice', 'vodka'}
+    ... }
+    を用いる。
+    'vodka' を材料に含むカクテル名の抽出
+    for name, contents in drinks.items():
+        if 'vodka' in contents:
+            print(name)
+    ->
+    martini
+    white russian
+    black russian
+    screwdriver
+    'vodka' を材料に含み 'vermouth' または 'cream' を材料に含まないカクテル名の抽出
+    for name, contents in drinks.items():
+        if 'vodka' in contents and not ('vermouth' in contents or 'cream' in contents):
+            print(name)
+    ->
+    black russian
+    screwdriver
+*** 組合せと演算
+**** 積集合演算子 &
+     A & B は集合 A と集合 B の両方に含まれる要素の集合(共通部分、積集合)である。A.intersection(B) も同じである。
+     材料に 'vermouth' または 'orange juice' を含むカクテル名の抽出
+     for name, contents in drinks.items():
+         if contents & {'vermouth', 'orange juice'}:
+             print(name)
+    ->
+    martini
+    screwdriver
+    manhattan
+    'vodka' を材料に含み 'vermouth' または 'cream' を材料に含まないカクテル名の抽出
+    for name, contents in drinks.items():
+        if 'vodka' in contents and not contents & {'vermouth', 'cream'}:
+            print(name)
+    ->
+    black russian
+    screwdriver
+    bruss = drinks['black russian']
+    wruss = drinks['white russian']
+    bruss & wruss -> {'vodka'}
+    a = {1, 2}
+    b = {2, 3}
+    a & b -> {2}
+    a.intersection(b) -> {2}
+**** 和集合演算子 |
+     A | B は集合 A と集合 B の少なくとも一方に含まれる要素の集合(和集合)である。A.union(B) も同じである。
+     a | b -> {1, 2, 3}
+     a.union(b) -> {1, 2, 3}
+     bruss | wruss -> {'kahlua', 'kaklua', 'vodka', 'cream'}
+**** 差集合演算子 -
+     A - B は集合 A に含まれているが集合 B に含まれていない要素の集合(差集合)である。A.difference(B) も同じである。
+     a - b -> {1}
+     a.difference(b) -> {1}
+     bruss -wruss -> set()
+     wruss - bruss -> {'cream'}
+**** 排他的 OR 演算子 ^
+     A ^ B は集合 A と集合 B のどちらか一方に含まれているが、両方には含まれていない要素の集合である。
+     A.symmetric_difference(B) も同じである。
+     a ^ b -> {1, 3}
+     a.symmetric_difference(b) -> {1, 3}
+     bruss ^ wruss -> {'cream'}
+*** 集合の判定
+**** 部分集合の判定
+     A <= B は集合 A が集合 B の部分集合のときに True 異なるときに False を返す。A.issubset(B) も同じである。
+     a <= b -> False
+     a.issubset(b) -> False
+     bruss <= wruss -> True
+     a <= a -> True
+     a.issubset(b) -> True
+**** 真部分集合の判定
+     A < B は集合 A が集合 B の真部分集合のとき True 異なるときに False を返す。
+     True になる条件は集合 B は集合 A のすべての要素を含み、さらに他の要素も含むときである。
+     a < b -> False
+     a < a -> False
+     bruss < wruss -> True
+**** 上位集合の判定
+     A >= B は集合 A が集合 B の上位集合(集合 B が集合 A の部分集合)のとき True 異なるときに False を返す。
+     A.issuperset(B) も同じである。
+     a >= b -> False
+     a.issuperset(b) -> False
+     wruss >= bruss -> True
+     a >= a -> True
+     a.issuperset(a) -> True
+**** 新上位集合の判定
+     A > B は集合 A が集合 B の真上位集合(集合 B が集合 Aの真部分集合)のとき True 異なるときに False を返す。
+     True になる条件は集合 A は集合 B のすべての要素を含み、さらに他の要素も含むときである。
+     a > b -> False
+     wruss > bruss -> True
+     a > a -> False
+*** もっと大きいデータ構造
+    marxes = ['Groucho', 'Chico', 'Harpo']
+    pythons = ['Chapman', 'Cleese', 'Gilliam', 'Johes', 'Palin']
+    stooges = ['Moe', 'Curly', 'Larry']
+    tuple_of_lists = marxes, pythons, stooges
+    tuple_of_lists -> (['Groucho', 'Chico', 'Harpo'], ['Chapman', 'Cleese', 'Gilliam', 'Johes', 'Palin'], ['Moe', 'Curly', 'Larry'])
+    list_of_lists = [marxes, pythons, stooges]
+    list_of_lists -> [['Groucho', 'Chico', 'Harpo'], ['Chapman', 'Cleese', 'Gilliam', 'Johes', 'Palin'], ['Moe', 'Curly', 'Larry']]
+    dict_of_lists = {'Marxes': marxes, 'Pythons': pythons, 'Stooges': stooges}
+    dist_of_lists -> {'Marxes': ['Groucho', 'Chico', 'Harpo'], 'Pythons': ['Chapman', 'Cleese', 'Gilliam', 'Johes', 'Palin'], 'Stooges': ['Moe', 'Curly', 'Larry']}
+    関心のある位置の GPS 座標(緯度、経度、高度)をインデックスとすることができる。
+    houses = {(44.79, -93.14, 285): 'My House', (38.89, -77.03, 13): 'The White House'}
+    houses -> {(38.89, -77.03, 13): 'The White House', (44.79, -93.14, 285): 'My House'}
